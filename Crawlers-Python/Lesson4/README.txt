@@ -1,0 +1,2 @@
+exo_cc_lesson4 : using google maps api, I got the distances between the 30 largest cities in france
+exo_dom_lesson4 : crawling leboncoin.fr and lacentrale.fr to get prices of "renault zoe" and check if the price is "worth" according to argus
