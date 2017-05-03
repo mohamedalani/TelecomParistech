@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+    {% block body %}
+
+        {{session.article}}
+
+        <form action="/move" method="post">
+            
+            {% for item in items %}
+            <li>
+                <label for="{{item}}">{{item}}</label>
+                <input type="radio" name="new_page" id="{{item}}" value="{{item}}"> <br>
+            {% endfor %}
+                <input type="hidden" name="score" value="{{score}}">
+            </li>
+            
+            
+            <input type="submit" value="Jouer !">
+        </form> 
+     <p> Score : {{score}} </p>
+
+
+    {% if session.test_cache %}
+        <li> Mot déjà vu dans le cache </li>
+    {% else %}
+        <li> mot stocké </li>
+    {% endif %}
+
+    {% endblock %}
+
+
