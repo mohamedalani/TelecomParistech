@@ -1,2 +1,80 @@
 /* Le CSS va ici */
 
+header {
+    background:#2c3e50;
+    border:1px solid #CCC;
+    margin:0px auto;
+    font-family: "Calibri";
+    text-align: center;
+    vertical-align: center;
+}
+
+body {
+    background-color: #ecf0f1;
+    text-align: center;
+}
+h1 {
+    color: #ecf0f1;
+    display: inline-block;
+}
+h1:hover {
+  color: #f39c12;
+  cursor: pointer;
+}
+h2 {
+  color: #f39c12
+}
+
+h3 {
+  color: #f39c12
+}
+p {
+    color: red;
+}
+
+form {
+ background-color:#FAFAFA;
+ padding:20px;
+ max-width:500px;
+ border-color: #2c3e50;
+ text-align: center;
+ border-style: solid;
+ display: inline-block;
+ margin-top: 35px;
+ -webkit-border-radius: 2px;
+ border-radius: 10px;
+}
+
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 2px;
+    border-radius: 10px;
+    float:right;
+    margin-top: 10px;
+
+}
+
+input[type="radio"] {
+  margin-bottom: 10px;
+}
+input[type=text] {
+    border: none;
+    background-color: #FAFAFA;
+    border-bottom: 2px solid #f39c12;
+}
+
+label:hover {
+  color: #2c3e50;
+}
+
+h4.error {
+  color: #A52A2A
+}
+
+h4.not_error {
+  color: #006400
+}

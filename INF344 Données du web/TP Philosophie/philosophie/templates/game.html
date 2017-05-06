@@ -1,31 +1,38 @@
 {% extends "index.html" %}
 
+
+
     {% block body %}
 
-        {{session.article}}
+      <header>
+          <h1 onclick=document.location.href='/'>Un jeu cool</h1>
+          <h2>{{session.article}}</h2>
+          <h3>  Score : {{score}}</h3>
+      </header>
 
         <form action="/move" method="post">
-            
+
             {% for item in items %}
-            <li>
-                <label for="{{item}}">{{item}}</label>
-                <input type="radio" name="new_page" id="{{item}}" value="{{item}}"> <br>
+                {% if loop.first %}
+                  <input type="radio" name="new_page" id="{{item}}" value="{{item}}" checked>
+                {% else %}
+                  <input type="radio" name="new_page" id="{{item}}" value="{{item}}">
+                {% endif %}
+                <label for="{{item}}">{{item}}</label>  <br>
             {% endfor %}
                 <input type="hidden" name="score" value="{{score}}">
-            </li>
-            
-            
+
+
+
             <input type="submit" value="Jouer !">
-        </form> 
-     <p> Score : {{score}} </p>
+        </form>
 
 
-    {% if session.test_cache %}
-        <li> Mot déjà vu dans le cache </li>
-    {% else %}
-        <li> mot stocké </li>
-    {% endif %}
+
+      {% if session.test_cache %}
+          <h4> Mot déjà vu dans le cache </h4>
+      {% else %}
+          <h4> mot stocké </h4>
+      {% endif %}
 
     {% endblock %}
-
-

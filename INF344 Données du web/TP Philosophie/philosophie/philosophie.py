@@ -26,6 +26,18 @@ def game(title=None, items=None, score=None):
     else :
         session["test_cache"] = 0
         title1, items1 = getPage(session["article"])
+        if title1=="Philosophie":
+            flash("C'est un peu de la triche...", 'not_error')
+            session["score"] = 1
+            return redirect('/')
+
+        if title1 == "":
+            flash("La page n'existe pas, retournez à l'école", "error")
+            return redirect('/')
+        elif not items1:
+            flash('Aucun résultat, vous êtes très nul.', "error")
+            return redirect('/')
+
         cache[session["article"]] = title1, items1
     return render_template('game.html', title=title1, items=items1, score=session["score"])
 
@@ -39,15 +51,20 @@ def new_game():
 
 @app.route('/move', methods=['POST'])
 def next_page():
-    #if request.form["score"] != session["score"]:
-    #    flash('Mouvement annulé')
-    #    return redirect('/')
-    
     new_page = request.form["new_page"]
-    
-    if new_page == "Philosophie":
-        flash('Bravo vous avez gagné')
-        return redirect('/')
+
+    if int(request.form["score"]) != int(session["score"]):
+        if session["article"] != request.form["new_page"]:
+            flash('Mouvement annulé', "error")
+            return redirect('/game')
+
+    elif new_page == "Philosophie":
+        if new_page in cache[session["article"]][1]:
+            flash("Pas très dur ce jeu...", "not_error")
+            return redirect('/')
+        else :
+            flash("Tricheur !", "error")
+            return redirect("/game")
     else :
         session["article"] = request.form["new_page"]
         session["score"] += 1
@@ -57,4 +74,3 @@ def next_page():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

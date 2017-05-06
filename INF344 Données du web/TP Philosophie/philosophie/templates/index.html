@@ -5,36 +5,39 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>Tous les chemins mènent à la philosophie</title>
   </head>
-    
-   <header>
-       <h1>Un jeu cool</h1>
-   </header>
-    
+
   <body>
-     {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-           {% for message in messages %}
-              <li>{{ message }}</li>
-           {% endfor %}
-           Score : {{session.score}}
-        </ul>
-      {% endif %}
-     {% endwith %}
-      
-    {% block body %}      
+
+    {% block body %}
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+     {% if messages %}
+
+       <ul class=flashes>
+          {% for category, message in messages %}
+             <h4 class="{{category}}"> {{ message }} </h4>
+          {% endfor %}
+
+          Score : {{session.score}}
+       </ul>
+     {% endif %}
+    {% endwith %}
+
+    <header>
+        <h1>Un jeu cool</h1>
+    </header>
       {# Début du bloc "body", dont vous devez modifier le contenu #}
-      
+
       <form action="/new-game" method="post">
           <input type="text" id="nom_page" name="nom_page" placeholder="où commencer"><br>
           <input type="submit" value="Jouer !">
       </form>
-      
-      
+
+
       {# Fin du bloc "body" #}
-      
+
     {% endblock %}
-     
+
 
   </body>
 </html>
